@@ -1,5 +1,5 @@
 /* ============================================
-   BrightPath Care — Interactive Functionality
+   Prime Clinical Nursing — Interactive Functionality
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -117,49 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // ── Testimonial Carousel ──
-    const cards  = document.querySelectorAll('.testimonial-card');
-    const dotsWrap = document.getElementById('carouselDots');
-    const prevBtn  = document.getElementById('carouselPrev');
-    const nextBtn  = document.getElementById('carouselNext');
-    let currentSlide = 0;
-    let autoplayTimer;
-
-    // Create dots
-    if (dotsWrap && cards.length) {
-        cards.forEach((_, i) => {
-            const dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsWrap.appendChild(dot);
-        });
-    }
-
-    const dots = document.querySelectorAll('.carousel-dot');
-
-    const goToSlide = (index) => {
-        cards.forEach(c => c.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
-        currentSlide = index;
-        cards[currentSlide].classList.add('active');
-        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
-        resetAutoplay();
-    };
-
-    const nextSlide = () => goToSlide((currentSlide + 1) % cards.length);
-    const prevSlide = () => goToSlide((currentSlide - 1 + cards.length) % cards.length);
-
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-
-    const resetAutoplay = () => {
-        clearInterval(autoplayTimer);
-        autoplayTimer = setInterval(nextSlide, 6000);
-    };
-    if (cards.length) resetAutoplay();
 
     // ── Contact Form ──
     const contactForm = document.getElementById('contactForm');
