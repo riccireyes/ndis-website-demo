@@ -6,8 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Navbar scroll effect ──
     const navbar = document.getElementById('navbar');
+    const hero = document.querySelector('.hero'); // Check if page has a dark hero
     const observeScroll = () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        if (!hero) {
+            navbar.classList.add('scrolled'); // Force solid navbar on subpages
+        } else {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        }
     };
     window.addEventListener('scroll', observeScroll, { passive: true });
     observeScroll();
@@ -16,20 +21,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
 
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navLinks.classList.toggle('open');
-        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-    });
-
-    // Close mobile nav on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navLinks.classList.remove('open');
-            document.body.style.overflow = '';
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
-    });
+
+        // Close mobile nav on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 
     // ── Hero particles ──
     const particlesContainer = document.getElementById('heroParticles');

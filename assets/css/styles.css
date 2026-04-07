@@ -1709,6 +1709,16 @@ h3 {
     color: rgba(255, 255, 255, .3);
 }
 
+.footer-legal-link {
+    color: rgba(255, 255, 255, .45);
+    text-decoration: none;
+    transition: color .3s var(--ease-out);
+}
+
+.footer-legal-link:hover {
+    color: var(--teal);
+}
+
 /* ============================================
    ANIMATIONS
    ============================================ */
